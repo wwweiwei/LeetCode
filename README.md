@@ -1,5 +1,22 @@
 # Python Cheetsheet
 
+### Integer
+* Number of Digits
+``` python
+# method 1
+import math
+if n > 0:
+    digits = int(math.log10(n))+1
+elif n == 0:
+    digits = 1
+elif n < 0:
+    digits = int(math.log10(-n))+2
+print(digits)
+
+# method 2
+len(str(n))
+```
+
 ### List
 * Construction
 ``` python
