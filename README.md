@@ -75,6 +75,54 @@ if i in price:
     price.index(i)
 ```
 
+### Array
+* Array 和 List 的差異
+    * Array: 
+        * 每一個元素都必須有**相同**的資料型態
+        * 在記憶體上的儲存位置會排在一起, 因此 array 的存取速度比 list 快
+    * List: 每一個元素可以是**不同**的資料型態, 在記憶體中的儲存位置是很難以預測
+``` python
+import numpy as np
+a = np.arange(0,4.0,0.5) # [ 0.  0.5  1.  1.5  2.  2.5  3.  3.5]
+b = np.array(range(10)) # [0 1 2 3 4 5 6 7 8 9]
+c = a[1:-1]**2 # [ 0.25  1.  2.25  4.  6.25  9.]
+d = a[:-1] + b[-7:] # 將 array a 和 array b 的 index 0~-1 與 -7~ 最後元素取出相加
+```
+* 2D array
+``` python
+a = np.array([[1, 2], [3, 4]], dtype = float)
+    ## a[0][0] a[0][1]
+    ## a[1][0] a[1][1]
+np.sum(a, axis = 0)  # 將矩陣的元素沿著直的方向加起來
+np.sum(a, axis = 1)  # 將矩陣的元素沿著橫的方向加起來
+np.zeros((5,3)) # 建立shape為(5,3), 每個元素都是0的Array
+np.ones((5,3)) # 建立shape為(5,3), 每個元素都是1的Array
+np.linspace(0,10,21) # array([ 0. ,0.5, 1. , 1.5, 2. , 2.5, 3. ,3.5, 4. , 4.5, 5. , 5.5, 6. , 6.5, 7. , 7.5, 8. , 8.5, 9. , 9.5, 10. ])
+np.diag([1,2,3]) # 建立主對角線元素依序為1,2,3的方陣, shape為(3,3)
+np.eye(5) # 產生5X5的1對角陣列
+np.random.rand(5,5) # 建立shape為(5,5)的Array, 每個元素介於0~1之間均勻隨機產生
+np.random.randn(5,5) # 建立shape為(5,5)的Array, 所有元素的產生呈常態分佈, 平均值為0, 標準差為1
+np.random.randint(1,100,(3,5)) # 有參數(low, high,size)可以自己設定範圍, 該數字落在兩個數字區間中
+``` 
+* 維度擴充
+``` python
+a = np.array([1, 2, 3, 4]) # 建立1維的array
+a[:, np.newaxis]  # 意義等同array([[1], [2], [3], [4]])
+a[np.newaxis, :]  # 意義等同array([[1, 2, 3, 4]])
+a.reshape(2,2) # 改變 NumPy Array 的 shape
+a.max() / a.min()
+a.argmax() / a.argmin()
+a.dtype
+```
+* 
+``` python
+
+```
+* 
+``` python
+
+```
+
 ### String
 * 在字串的前方加上f/F ，在 {} 符號中傳入變數或運算式
 ``` python
@@ -96,6 +144,25 @@ l = list(a)
 l[0], l[6] = 'h', 'p'
 ''.join(l) # 'hello python'
 ```
+* Regex (Regular expression)
+    * \d: 從0到9的數字 
+    * \w: 任何的字母、數字及底線符號_
+    * \s: 空白字元，包括空格、定位符號空格(tab)、換行符號
+    * \D: \d規則以外的字元
+    * \W: \w規則以外的字元
+    * \S: \s規則以外的字元
+``` python
+import re
+phoneNumRegex = re.compile(r'\d\d-\d\d\d\d-\d\d\d\d')
+mo = phoneNumRegex.search('Call me at 02-0000-0000 by today.')
+print(mo.group()) # 02-0000-0000
+```
+    * findall() 與 search() 不同的是：
+        * 不需要使用 group() 就可以呈現出比對成功的結果
+        * findall(): return **list**
+        * search(): return **string**
+        * group() 的括號內填入組別, 取得指定的比對資料
+        
 
 ### Dataframe
 * Construct
@@ -364,6 +431,77 @@ sports_car_rate = Cars.speed_rate(20000, 20)
 print("sports car rate: ", sports_car_rate)
 ```
 
+### argparse
+``` python
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('integers', metavar='N', type=int, nargs='+',
+                    help='an integer for the accumulator')
+parser.add_argument('--sum', dest='accumulate', action='store_const',
+                    const=sum, default=max,
+                    help='sum the integers (default: find the max)')
+
+args = parser.parse_args()
+parser = argparse.ArgumentParser(description='Process some integers.')
+
+```
+* **ArgumentParser** 方法
+    * description: 簡要描述這個程序做什麼以及怎麼做
+* **add_argument** 方法
+    * help
+    * nargs
+        * '*':引數可以是任意數量（0 個或任意多個）
+        * N: 一個整數 e.g. 1, 2..
+        * '?': 引數只能是 0 個或是 1 個
+        * '+': 引數至少 1 個（1 個或任意多個）
+    * default
+    * type
+    * choices：有範圍的等級 e.g. choices=[0, 1, 2]
+
+* 儲存引數資料的 Namespace 物件
+    * 使用 parse_args() 從 parser 取得引數資料後，此函數會回傳 Namespace 物件，這只是一個單純把資料用屬性（attribute）儲存下來的超簡單類別
+``` python
+args = parser.parse_args()
+## args 是 Namespace 物件，只是個極簡單的類別
+print(args) # Namespace(arg1='hello', arg2='world', arg3=3)
+
+## 用一般取得 attribute 的方式來取得引數資料內容
+print(args.arg1) # hello
+
+## 可以使用 vars(), 以 dict 資料結構取得引數資料
+print(vars(args)) # {'arg1': 'hello', 'arg2': 'world', 'arg3': 3}
+```
+* **action**
+    * action = "**store_true**"
+    ``` python
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--verbose",
+                        action = "store_true",  # 引數儲存為 boolean
+                        help = "簡單開關的引數")
+    args = parser.parse_args()
+    print(args.verbose)
+
+    python3 test.py --verbose
+    > args.verbose 的數值為：True
+
+    python3 test.py ## 沒輸入 Flag 的話，預設為 False
+    > args.verbose 的數值為：False
+    ```
+    * action = "**count**"
+    ``` python
+    parser.add_argument("-v",
+                        "--verbose",
+                        action="count",
+                        default=0,
+                        help="請輸入囉唆程度")
+    args = parser.parse_args()
+    print(f"args.verbose 的值為：{args.verbose}")
+
+    python3 test.py -v # args.verbose 的值為：1
+    python3 test.py -vv # args.verbose 的值為：2
+    python3 test.py --verbose --verbose --verbose # args.verbose 的值為：3
+    python3 test.py # args.verbose 的值為：0
+    ```
 * 
 ``` python
 
@@ -380,6 +518,10 @@ print("sports car rate: ", sports_car_rate)
 ``` python
 
 ```
+* 
+``` python
 
+```
 ### Reference
 * Python: https://www.learncodewithmike.com/
+* Argparse: https://haosquare.com/python-argparse/
