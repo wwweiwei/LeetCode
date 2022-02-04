@@ -502,13 +502,16 @@ print(vars(args)) # {'arg1': 'hello', 'arg2': 'world', 'arg3': 3}
     python3 test.py --verbose --verbose --verbose # args.verbose 的值為：3
     python3 test.py # args.verbose 的值為：0
     ```
-* 
-``` python
 
+### Others
+* Bitwise Shift Assignment
+``` python
+A >>= B ## bitwise right shift and assigns value to the left operand
+A <<= B ## bitwise left shift and assigns value to the left operand
 ```
-* 
+* Count
 ``` python
-
+string.count(substring, start=..., end=...)
 ```
 * 
 ``` python
