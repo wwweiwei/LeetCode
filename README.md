@@ -23,6 +23,8 @@ len(str(n))
 numbers = [0, 1, 2]
 numbers = list(range(3))
 numbers = [1] * 3
+numbers = [i for i in range(1, n+1)]
+numbers = [[0] * cols ] * rows ## not good
 title = list('Hello')
 title = ['H'] * 3
 ``` 
@@ -53,6 +55,47 @@ title.clear() # delete all elements
 ``` python
 numbers.count(1)
 ```
+* Zip
+``` python
+friends= ["芸芸", "萱萱", "琳琳", "娜娜"]
+stars = ["天秤", "金牛", "雙魚","雙子"]
+likes = ["餅乾", "巧克力", "草莓", "蛋糕"]
+
+zipped = zip(friends, stars, likes)
+print(list(zipped))
+```
+> output: [('芸芸', '天秤', '餅乾'), 
+>          ('萱萱', '金牛', '巧克力'), 
+>          ('琳琳', '雙魚', '草莓'), 
+>          ('娜娜', '雙子', '蛋糕')]
+
+    * if don't know the numbers of pair
+    ``` python
+    datas = [('芸芸', '天秤', '餅乾'), 
+                ('萱萱', '金牛', '巧克力'), 
+                ('琳琳', '雙魚', '草莓'), 
+                ('娜娜', '雙子', '蛋糕')]
+    zipped = zip(*datas)
+    print(list(zipped))
+    ```
+> output: [('芸芸', '萱萱', '琳琳', '娜娜'), 
+>          ('天秤', '金牛', '雙魚', '雙子'), 
+>          ('餅乾', '巧克力', '草莓', '蛋糕')]
+
+* Example
+>>> a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> a[-1:]
+[9]
+>>> a[-9:-1]
+[1, 2, 3, 4, 5, 6, 7, 8]
+>>> a[1:20]
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> a[:9]
+[0, 1, 2, 3, 4, 5, 6, 7, 8]
+>>> a[0:]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> a[9:3]
+[]
 
 ### Tuples
 > Iterable, Unmodifiable(不可修改的)
