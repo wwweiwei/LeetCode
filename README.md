@@ -55,6 +55,11 @@ title.clear() # delete all elements
 ``` python
 numbers.count(1)
 ```
+* Shape
+``` python
+import numpy
+numpy.shape(numbers)[0] == len(numbers)
+```
 * Zip
 ``` python
 friends= ["芸芸", "萱萱", "琳琳", "娜娜"]
@@ -205,7 +210,26 @@ print(mo.group()) # 02-0000-0000
         * findall(): return **list**
         * search(): return **string**
         * group() 的括號內填入組別, 取得指定的比對資料
-        
+
+``` python      
+re.search(pattern, string) # pattern: 資料型式, string: 要比對的文字
+time = re.search(r'\d+-\d+-\d+ \d+:\d+:\d+', '今天的日期是：2020-07-01 14:02:48')
+# <re.Match object; span=(7, 26), match='2020-07-01 14:02:48'>
+
+time.group()
+# '2020-07-01 14:02:48'
+``` 
+
+* re.match: 從頭開始比對文字
+    * 與re.search()的最大差別在於它是檢測文字是否在開頭位置
+``` python   
+re.match( pattern, string )
+```
+
+* re.findall(): 找尋文字中所有匹配的文字
+``` python
+author = re.findall('編輯 - (.*?) ', text1)
+```
 
 ### Dataframe
 * Construct
@@ -309,19 +333,22 @@ store.clear()
     ``` python
     x_list = [1, 10, 100]
     filter(lambda x: x > 10, x_list)
+    list(x_list)
     ```
 * map(lambda parameter: expression, iterable)
     E.g.
     ``` python
     x_list = [1, 10, 100]
     map(lambda x: x * 2, x_list)
+    list(x_list)
     ```
 * reduce(lambda parameter1, parameter2: expression, iterable)
     E.g.
     ``` python
     from functools import reduce
     x_list = [1, 10, 100]
-    reduce(lambda a, b: a + b, x_list)    
+    reduce(lambda a, b: a + b, x_list)   
+    list(x_list)
     ```
 * sorted(iterable, key=lambda parameter: expression)
     E.g.
