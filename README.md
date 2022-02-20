@@ -573,6 +573,47 @@ print(vars(args)) # {'arg1': 'hello', 'arg2': 'world', 'arg3': 3}
     python3 test.py # args.verbose 的值為：0
     ```
 
+### Set
+集合 (Set) 其實和數組 (Tuple) 與串列 (List) 很類似, 不同的點在於集合不會包含重複的資料
+* Construction
+``` python
+# 從串列 (List) 來建立集合
+set1 = set([i for i in range(20, 30)])
+
+# 從數組 (Tuple) 來建立集合
+set2 = set((10, 20, 30, 40, 50))
+```
+
+* Add and Delete
+可以使用 add(value) 來加入新元素, 也可以使用 remove(value) 來移除元素
+``` python
+set1 = {1, 2, 3, 4, 5}
+set2 = set((10, 20, 30, 40, 50))
+
+set1.add(6)
+set2.remove(20)
+```
+
+* 與串列 (List) 和數組 (Tuple) 一樣可以使用以下函式:
+len() 回傳長度, sum() 回傳總和, max() 回傳最大值, min() 回傳最小值
+* 與串列 (List) 和數組 (Tuple) 一樣可以使用 in 和 not in 來判斷元素是否存在於集合中
+* 因為集合 (Set) 沒辦法使用索引 (Index) 來印出, 所以用 for 迴圈寫時要這樣寫
+``` python
+for i in set1:
+	print(i, end = ' ')
+```
+
+* Union
+``` python
+set1 = {2, 4, 5, 6}
+set2 = {4, 6, 7, 8}
+set3 = {7, 8, 9, 10}
+
+# union of two sets
+print("set1 U set2 : ", set1 | set2)
+>> set1 U set2 :  {2, 4, 5, 6, 7, 8}
+```
+
 ### Others
 * Bitwise Shift Assignment
 ``` python
