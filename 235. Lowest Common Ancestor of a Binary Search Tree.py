@@ -8,26 +8,12 @@ import numpy as np
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-
-        def getList(cur, node):
-            val_list = []
-            while True:
-                val_list.append(cur.val)
-                if cur.val < node.val:
-                    cur = cur.right
-                elif cur.val > node.val:
-                    cur = cur.left
-                else:
-                    return val_list
-                
-        list_p = getList(root, p)
-        list_q = getList(root, q)
-
-        list_p = list_p.reverse()
-        list_q = list_q.reverse()
-        
-        i = 0
+        if not root:
+            return None
         while True:
-            if list_p[i] == list_q[i]:
-                return list_p[i]
-            i += 1      
+            if p.val < root.val and q.val < root.val:
+                root = root.left
+            elif p.val > root.val and q.val > root.val:
+                root = root.right
+            else:
+                return root
