@@ -613,6 +613,20 @@ set3 = {7, 8, 9, 10}
 print("set1 U set2 : ", set1 | set2)
 >> set1 U set2 :  {2, 4, 5, 6, 7, 8}
 ```
+### Deqeue
+* Deqeue
+	* deque 可以增長到任意長度
+``` python
+from collections import deque
+d = deque('ghi')  ## deque(['g', 'h', 'i'])
+d.append('j')
+d.appendleft('f')
+d.pop()
+d.popleft() 
+list(d)   ## ['g', 'h', 'i']
+
+```
+
 
 ### Others
 * Bitwise Shift Assignment
