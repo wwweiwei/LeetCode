@@ -1,4 +1,4 @@
-# Python Cheetsheet
+# Python Cheatsheet
 
 ### Integer
 * Number of Digits
