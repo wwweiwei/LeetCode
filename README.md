@@ -638,18 +638,11 @@ A <<= B ## bitwise left shift and assigns value to the left operand
 ``` python
 string.count(substring, start=..., end=...)
 ```
-* 
-``` python
+* continue, break, pass statement
+	* continue: give you the option to skip over the part of a loop where an external condition is triggered, but to go on to complete the rest of the loop
+	* break: provide you with the opportunity to exit out of a loop when an external condition is triggered
+	* pass: allow you to handle the condition without the loop being impacted in any way
 
-```
-* 
-``` python
-
-```
-* 
-``` python
-
-```
 ### Reference
 * Python: https://www.learncodewithmike.com/
 * Argparse: https://haosquare.com/python-argparse/
